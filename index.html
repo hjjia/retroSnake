@@ -64,16 +64,6 @@
 </head>
 <body>
     <div id="pannel" style="margin-bottom: 10px;"></div>
-   <!-- <select id="selSize">
-        <option value="20">20*20</option>
-        <option value="30">30*30</option>
-        <option value="40">40*40</option>
-    </select>
-    <select id="selSpeed">
-        <option value="500">速度-慢</option>
-        <option value="250" selected="selected">速度-中</option>
-        <option value="100">速度-快</option>
-    </select>-->
     <input type="button" class="btn" id="btnStart" value="开始" />
     <input type="button" class="btn" id="reStart" value="重新开始" />
     <div class="copyright">
@@ -81,17 +71,6 @@
     </div>
 <script src="snake.js"></script>
 <script>
-
-  /*  var selSize  = document.getElementById('selSize').value
-    var selSpeed = document.getElementById('selSpeed').value
-
-    document.getElementById('selSize').onchange = function(){
-        selSize = this.value
-    }
-    document.getElementById('selSpeed').onchange = function(){
-        selSpeed = this.value
-    }*/
-
     new retroSnake({
         id:'pannel',
         startId:'btnStart',
