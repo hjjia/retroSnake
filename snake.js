@@ -70,12 +70,16 @@
         var startDom = document.getElementById(this.startId)
         var reStartDom = document.getElementById(this.reStartId)
 
+        reStartDom.disabled = true
+        reStartDom.setAttribute('disabled',true)
+
         startDom.addEventListener('click', function () {
+
             this.disabled = true
             this.setAttribute('disabled',true)
 
-            //reStartDom.disabled = true
-            //reStartDom.setAttribute('disabled',true)
+            reStartDom.disabled = false
+            reStartDom.removeAttribute('disabled')
 
             that.Start()
 
@@ -83,14 +87,7 @@
 
         reStartDom.addEventListener('click', function () {
 
-            clearInterval(that.workThread)
-            for(var i = 0; i < that.snakePos.length;i++){
-                document.getElementById('box_'+ that.snakePos[i].X +'_' + that.snakePos[i].Y).className = ''
-            }
-            document.getElementById('box_'+ that.foodPos.X +'_' + that.foodPos.Y).className = ''
-
-            that.snakePos.length = 0
-            that.foodPos.length  = 0
+            that.removeSnake(1)
 
             that.Start()
         },false)
@@ -226,14 +223,37 @@
 
     }
 
+    retroSnake.prototype.removeSnake = function(type){
+
+        clearInterval(this.workThread)
+        if(this.snakePos.length > 0){
+            var len = type == 1 ? this.snakePos.length : (this.snakePos.length - 1);
+            for(var i = 0; i < len;i++){
+                document.getElementById('box_'+ this.snakePos[i].X +'_' + this.snakePos[i].Y).className = ''
+            }
+            document.getElementById('box_'+ this.foodPos.X +'_' + this.foodPos.Y).className = ''
+
+            this.snakePos.length = 0
+            this.foodPos.length  = 0
+        }
+
+    }
+
     retroSnake.prototype.grameOver = function () {
         clearInterval(this.workThread)
 
         var startDom = document.getElementById(this.startId)
+        var reStartDom = document.getElementById(this.reStartId)
 
+        startDom.disabled = false
         startDom.removeAttribute('disable')
 
+        reStartDom.disabled = true
+        reStartDom.setAttribute('disabled',true)
+
         alert("Game Over!")
+
+        this.removeSnake(0)
 
     }
 
