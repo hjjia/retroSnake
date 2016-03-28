@@ -32,7 +32,9 @@
         #pannel table .food {
             background-color: blue;
         }
-        .btn{
+        .btn,
+        select
+        {
             display: inline-block;
             margin-left: 5px;
             text-align: center;
@@ -46,8 +48,9 @@
             border: 1px solid #dfdfdf;
             color: #545454;
         }
-        .btn[disabled]{
+        .btn[disabled],select[disabled]{
             cursor: not-allowed;
+            background-color: #dfdfdf;
         }
         .copyright{
             margin-top: 20px;
@@ -81,23 +84,19 @@
     </div>
 <script src="snake.js"></script>
 <script>
-   /*   var selSize  = document.getElementById('selSize').value
+     var selSize  = document.getElementById('selSize').value
      var selSpeed = document.getElementById('selSpeed').value
 
-     document.getElementById('selSize').onchange = function(){
-     selSize = this.value
-     }
-     document.getElementById('selSpeed').onchange = function(){
-     selSpeed = this.value
-     }*/
-    new retroSnake({
-        id:'pannel',
-        startId:'btnStart',
-        reStartId:'reStart',
-        row:20,
-        column:20,
-        speed:250
-    }).init()
+     var snake = new retroSnake({
+         id:'pannel',
+         startId:'btnStart',
+         reStartId:'reStart',
+         reSpeedId:'selSpeed',
+         reSPanelId:'selSize',
+
+     }).init()
+
+
 </script>
 </body>
 </html>

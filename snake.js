@@ -5,10 +5,10 @@
     window.retroSnake = function (obj) {
         this.id         = obj.id  // 面板id
         this.startId    = obj.startId  // 游戏开始按钮id
-        this.reStartId  = obj.reStartId  // 游戏开始按钮id
-        this.row        = obj.row // 行数
-        this.column     = obj.column //
-        this.speed      = obj.speed //
+        this.reStartId  = obj.reStartId  // 游戏重新开始按钮 id
+        this.reSpeedId  = obj.reSpeedId  // 游戏调速 id
+        this.reSPanelId = obj.reSPanelId  // 调节面板大小 id
+
         this.workThread = null
 
     }
@@ -42,9 +42,31 @@
 
     //
 
-    retroSnake.prototype.init = function(){
+    retroSnake.prototype.init = function () {
+        var reSpeedId  = document.getElementById(this.reSpeedId)
+        var reSPanelId = document.getElementById(this.reSPanelId)
+
         var that = this
 
+        this.row   = this.column = reSPanelId.value
+        this.speed = reSpeedId.value
+
+        reSpeedId.onchange = function () {
+            that.speed = reSpeedId.value
+            console.log('speed ' + that.row)
+        }
+
+        reSPanelId.onchange = function () {
+            that.row   = that.column = reSPanelId.value
+            that.drawPanel()
+        }
+
+        this.Play()
+
+    }
+
+    retroSnake.prototype.Play = function(){
+        var that = this
         that.drawPanel()
 
         this.Start = function () {
@@ -70,6 +92,9 @@
         var startDom = document.getElementById(this.startId)
         var reStartDom = document.getElementById(this.reStartId)
 
+        var reSpeedId  = document.getElementById(this.reSpeedId)
+        var reSPanelId = document.getElementById(this.reSPanelId)
+
         reStartDom.disabled = true
         reStartDom.setAttribute('disabled',true)
 
@@ -77,6 +102,12 @@
 
             this.disabled = true
             this.setAttribute('disabled',true)
+
+            reSpeedId.disabled = true
+            reSpeedId.setAttribute('disabled',true)
+
+            reSPanelId.disabled = true
+            reSPanelId.setAttribute('disabled',true)
 
             reStartDom.disabled = false
             reStartDom.removeAttribute('disabled')
@@ -92,7 +123,9 @@
             that.Start()
         },false)
 
+
     }
+
 
     retroSnake.prototype.Eat = function (foodPos) {
 
@@ -245,8 +278,17 @@
         var startDom = document.getElementById(this.startId)
         var reStartDom = document.getElementById(this.reStartId)
 
+        var reSpeedId  = document.getElementById(this.reSpeedId)
+        var reSPanelId = document.getElementById(this.reSPanelId)
+
         startDom.disabled = false
         startDom.removeAttribute('disable')
+
+        reSpeedId.disabled = false
+        reSpeedId.removeAttribute('disable')
+
+        reSPanelId.disabled = false
+        reSPanelId.removeAttribute('disable')
 
         reStartDom.disabled = true
         reStartDom.setAttribute('disabled',true)
