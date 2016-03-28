@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background-color: #f5f5f5;
+            text-align: center;
+        }
+        #pannel{
+            margin-top: 50px ;
+            text-align: center;
+        }
+        #pannel table {
+            border-collapse: collapse;
+            margin-left: auto;
+            margin-right: auto;
+            background-color: #FFFFFF;
+        }
+        #pannel table td {
+            border: 1px solid #1a1a1a;
+            width: 8px;
+            height: 8px;
+            font-size: 0;
+            line-height: 0;
+            overflow: hidden;
+        }
+        #pannel table .snake {
+            background-color: #000000;
+        }
+        #pannel table .food {
+            background-color: blue;
+        }
+        .btn{
+            display: inline-block;
+            margin-left: 5px;
+            text-align: center;
+            padding: 4px 8px;
+            background-color: #FFFFFF;
+            border-radius: 2px;
+            outline:none;
+            line-height: 1.42857143;
+            vertical-align: middle;
+            cursor: pointer;
+            border: 1px solid #dfdfdf;
+            color: #545454;
+        }
+        .btn[disabled]{
+            cursor: not-allowed;
+        }
+        .copyright{
+            margin-top: 20px;
+            color: #545454;
+        }
+        .copyright .link{
+            color: #337ab7;
+            text-decoration: none;
+        }
+        .copyright .link:hover{
+            color: #23527c;
+        }
+    </style>
+</head>
+<body>
+    <div id="pannel" style="margin-bottom: 10px;"></div>
+   <!-- <select id="selSize">
+        <option value="20">20*20</option>
+        <option value="30">30*30</option>
+        <option value="40">40*40</option>
+    </select>
+    <select id="selSpeed">
+        <option value="500">速度-慢</option>
+        <option value="250" selected="selected">速度-中</option>
+        <option value="100">速度-快</option>
+    </select>-->
+    <input type="button" class="btn" id="btnStart" value="开始" />
+    <input type="button" class="btn" id="reStart" value="重新开始" />
+    <div class="copyright">
+       create by <a href="http://hjjia.github.io/demoList/"  target="_blank" class="link">『卟倒翁』... 佳</a>
+    </div>
+<script src="snake.js"></script>
+<script>
+
+  /*  var selSize  = document.getElementById('selSize').value
+    var selSpeed = document.getElementById('selSpeed').value
+
+    document.getElementById('selSize').onchange = function(){
+        selSize = this.value
+    }
+    document.getElementById('selSpeed').onchange = function(){
+        selSpeed = this.value
+    }*/
+
+    new retroSnake({
+        id:'pannel',
+        startId:'btnStart',
+        reStartId:'reStart',
+        row:20,
+        column:20,
+        speed:250
+    }).init()
+</script>
+</body>
+</html>
